@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C39B7DB3289933B000F29BFF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B7DB2289933B000F29BFF /* MainView.swift */; };
+		C39B7DB528993ABA00F29BFF /* AddStartTimeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B7DB428993ABA00F29BFF /* AddStartTimeButton.swift */; };
+		C39B7DB928994A1900F29BFF /* TimersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B7DB828994A1900F29BFF /* TimersViewModel.swift */; };
+		C39B7DBC28995E6600F29BFF /* TimeInterval+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B7DBB28995E6500F29BFF /* TimeInterval+String.swift */; };
+		C39B7DBE2899A0CB00F29BFF /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B7DBD2899A0CA00F29BFF /* NotificationManager.swift */; };
+		C39B7DC3289A95D600F29BFF /* TimerCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B7DC2289A95D600F29BFF /* TimerCount.swift */; };
+		C39B7DC5289ACB2A00F29BFF /* Date+TimeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B7DC4289ACB2A00F29BFF /* Date+TimeString.swift */; };
+		C39B7DC7289AE3C700F29BFF /* TimerCountRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B7DC6289AE3C600F29BFF /* TimerCountRowView.swift */; };
 		C3BB2BE62897F31900E67B15 /* TimerExtraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB2BE52897F31900E67B15 /* TimerExtraApp.swift */; };
 		C3BB2BE82897F31900E67B15 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB2BE72897F31900E67B15 /* ContentView.swift */; };
 		C3BB2BEA2897F31E00E67B15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3BB2BE92897F31E00E67B15 /* Assets.xcassets */; };
@@ -34,6 +42,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C39B7DB2289933B000F29BFF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		C39B7DB428993ABA00F29BFF /* AddStartTimeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStartTimeButton.swift; sourceTree = "<group>"; };
+		C39B7DB828994A1900F29BFF /* TimersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimersViewModel.swift; sourceTree = "<group>"; };
+		C39B7DBA28994B0B00F29BFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C39B7DBB28995E6500F29BFF /* TimeInterval+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+String.swift"; sourceTree = "<group>"; };
+		C39B7DBD2899A0CA00F29BFF /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		C39B7DC2289A95D600F29BFF /* TimerCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCount.swift; sourceTree = "<group>"; };
+		C39B7DC4289ACB2A00F29BFF /* Date+TimeString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+TimeString.swift"; sourceTree = "<group>"; };
+		C39B7DC6289AE3C600F29BFF /* TimerCountRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCountRowView.swift; sourceTree = "<group>"; };
 		C3BB2BE22897F31900E67B15 /* TimerExtra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimerExtra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3BB2BE52897F31900E67B15 /* TimerExtraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerExtraApp.swift; sourceTree = "<group>"; };
 		C3BB2BE72897F31900E67B15 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +88,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C39B7DB628993C6200F29BFF /* Uilities */ = {
+			isa = PBXGroup;
+			children = (
+				C39B7DBB28995E6500F29BFF /* TimeInterval+String.swift */,
+				C39B7DC4289ACB2A00F29BFF /* Date+TimeString.swift */,
+			);
+			path = Uilities;
+			sourceTree = "<group>";
+		};
+		C39B7DB7289949F800F29BFF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C39B7DB828994A1900F29BFF /* TimersViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C39B7DC1289A943600F29BFF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C39B7DC2289A95D600F29BFF /* TimerCount.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		C3BB2BD92897F31900E67B15 = {
 			isa = PBXGroup;
 			children = (
@@ -95,8 +137,16 @@
 			isa = PBXGroup;
 			children = (
 				C3BB2BE52897F31900E67B15 /* TimerExtraApp.swift */,
+				C39B7DBD2899A0CA00F29BFF /* NotificationManager.swift */,
 				C3BB2BE72897F31900E67B15 /* ContentView.swift */,
+				C39B7DB2289933B000F29BFF /* MainView.swift */,
+				C39B7DB428993ABA00F29BFF /* AddStartTimeButton.swift */,
+				C39B7DC6289AE3C600F29BFF /* TimerCountRowView.swift */,
+				C39B7DB7289949F800F29BFF /* ViewModel */,
+				C39B7DC1289A943600F29BFF /* Model */,
 				C3BB2BE92897F31E00E67B15 /* Assets.xcassets */,
+				C39B7DBA28994B0B00F29BFF /* Info.plist */,
+				C39B7DB628993C6200F29BFF /* Uilities */,
 				C3BB2BEB2897F31E00E67B15 /* Preview Content */,
 			);
 			path = TimerExtra;
@@ -257,7 +307,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C39B7DC5289ACB2A00F29BFF /* Date+TimeString.swift in Sources */,
+				C39B7DC7289AE3C700F29BFF /* TimerCountRowView.swift in Sources */,
+				C39B7DBC28995E6600F29BFF /* TimeInterval+String.swift in Sources */,
+				C39B7DB928994A1900F29BFF /* TimersViewModel.swift in Sources */,
 				C3BB2BE82897F31900E67B15 /* ContentView.swift in Sources */,
+				C39B7DB528993ABA00F29BFF /* AddStartTimeButton.swift in Sources */,
+				C39B7DBE2899A0CB00F29BFF /* NotificationManager.swift in Sources */,
+				C39B7DC3289A95D600F29BFF /* TimerCount.swift in Sources */,
+				C39B7DB3289933B000F29BFF /* MainView.swift in Sources */,
 				C3BB2BE62897F31900E67B15 /* TimerExtraApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,9 +478,10 @@
 				DEVELOPMENT_TEAM = YCB3MU8QJY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = TimerExtra/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -449,9 +508,10 @@
 				DEVELOPMENT_TEAM = YCB3MU8QJY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = TimerExtra/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
