@@ -14,33 +14,58 @@ struct MainView: View {
     var body: some View {
         VStack {
             ScrollView {
+                if viewModel.timers.count == 0 {
+                    HStack {
+                        Spacer()
+                        Text("Tap buttons below to add time, then tap Start")
+                            .font(.title2)
+                            .foregroundColor(.white)
+                            .padding(40)
+                        Spacer()
+                    }
+                    .frame(height: 200)
+                    
+                    Spacer()
+                }
                 ForEach(viewModel.timers, id: \.id) { timerCount in
-                    TimerCountRowView(timerCount: timerCount, countDown: timerCount.timeInterval)
+                    TimerCountRowView(timerCount: timerCount,
+                                      countDown: timerCount.timeInterval,
+                                      deleteAction: {
+                                          viewModel.removeTimer(timerCount)
+                                      })
                         .padding(.horizontal, 20)
                 }
                 
-                if viewModel.timers.count > 5 {
-                    Button {} label: {
+                if viewModel.timers.count >= 3 {
+                    Button {
+                        viewModel.timers = viewModel.timers.filter { $0.countDownInSeconds() + 0.5 > 0 }
+                    } label: {
                         Spacer()
                         Text("Remove finished timer")
-                            .fontWeight(.semibold)
+                            .foregroundColor(.red)
                             .padding(2)
                         Spacer()
                     }
                     .buttonStyle(.borderedProminent)
-                    .tint(.red)
+                    .tint(.secondary)
                     .padding(.bottom, 10)
                     .padding(.horizontal, 20)
                 }
             }
+            .padding(.top, 10)
             
-            Divider()
-                .foregroundColor(.gray)
+            Spacer()
             
             Group {
                 HStack {
-                    AddStartTimeButton(label: "+ 1 second") {
-                        startSeconds += 1
+                    if startSeconds < 10 {
+                        AddStartTimeButton(label: "+ 1 second") {
+                            startSeconds += 1
+                        }
+                    } else {
+                        AddStartTimeButton(label: "Reset") {
+                            startSeconds = 0
+                        }
                     }
                 
                     AddStartTimeButton(label: "+ 5s") {
