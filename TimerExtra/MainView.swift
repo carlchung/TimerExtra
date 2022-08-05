@@ -10,11 +10,14 @@ import SwiftUI
 struct MainView: View {
     @StateObject var viewModel = TimersViewModel()
     @State var startSeconds: Double = 0
+    @State var showMaxTimerAlert = false
     
     var body: some View {
         VStack {
             ScrollView {
                 if viewModel.timers.count == 0 {
+                    Spacer()
+                    
                     HStack {
                         Spacer()
                         Text("Tap buttons below to add time, then tap Start")
@@ -23,7 +26,7 @@ struct MainView: View {
                             .padding(40)
                         Spacer()
                     }
-                    .frame(height: 200)
+                    .frame(height: 260)
                     
                     Spacer()
                 }
@@ -35,26 +38,15 @@ struct MainView: View {
                                       })
                         .padding(.horizontal, 20)
                 }
-                
-                if viewModel.timers.count >= 3 {
-                    Button {
-                        viewModel.timers = viewModel.timers.filter { $0.countDownInSeconds() + 0.5 > 0 }
-                    } label: {
-                        Spacer()
-                        Text("Remove finished timer")
-                            .foregroundColor(.red)
-                            .padding(2)
-                        Spacer()
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .tint(.secondary)
-                    .padding(.bottom, 10)
-                    .padding(.horizontal, 20)
-                }
             }
             .padding(.top, 10)
             
             Spacer()
+            
+            if showMaxTimerAlert {
+                Text("Maximum 3 timers at a time")
+                    .foregroundColor(.red)
+            }
             
             Group {
                 HStack {
@@ -67,18 +59,18 @@ struct MainView: View {
                             startSeconds = 0
                         }
                     }
-                
+                    
                     AddStartTimeButton(label: "+ 5s") {
                         startSeconds += 5
                     }
                 }
                 .padding(.top, 10)
-            
+                
                 HStack {
                     AddStartTimeButton(label: "+ 10s") {
                         startSeconds += 10
                     }
-                
+                    
                     AddStartTimeButton(label: "+ 30s") {
                         startSeconds += 30
                     }
@@ -87,30 +79,34 @@ struct MainView: View {
                     AddStartTimeButton(label: "+ 1 minute", doubleHeight: true) {
                         startSeconds += 60
                     }
-            
+                
                     AddStartTimeButton(label: "+ 5 mins", doubleHeight: true) {
                         startSeconds += 5 * 60
                     }
                 }
-            
+                
                 HStack {
                     AddStartTimeButton(label: "+ 10 mins", doubleHeight: true) {
                         startSeconds += 10 * 60
                     }
-            
+                
                     AddStartTimeButton(label: "+ 30 mins", doubleHeight: true) {
                         startSeconds += 30 * 60
                     }
                 }
-                .padding(.bottom, 15)
 
                 Button {
                     guard startSeconds > 0 else {
                         return
                     }
+                    if viewModel.timers.count == 3 {
+                        showMaxTimerAlert = true
+                        return
+                    }
                     if startSeconds > 24 * 60 * 60 {
                         startSeconds = 24 * 60 * 60
                     }
+                    showMaxTimerAlert = false
                     NotificationManager.shared.fetchNotificationSettings()
                     let notifSettings = NotificationManager.shared.settings
                     if notifSettings?.authorizationStatus == .authorized {
@@ -123,7 +119,6 @@ struct MainView: View {
                             }
                         }
                     }
-                
                 } label: {
                     Spacer()
                     Text(startSeconds > 0 ? "\(TimeInterval(startSeconds).string(style: .positional))    Start" : "Start")
@@ -134,7 +129,8 @@ struct MainView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(.secondary)
-                .opacity(startSeconds > 0 ? 1.0 : 0.3)
+                .opacity(startSeconds > 0 && viewModel.timers.count < 3 ? 1.0 : 0.3)
+                .padding(.vertical, 15)
             }
             .padding(.horizontal, 20)
         }

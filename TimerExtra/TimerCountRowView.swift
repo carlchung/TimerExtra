@@ -5,17 +5,19 @@
 //  Created by carl on 03/08/2022.
 //
 
+import AVFoundation
 import SwiftUI
 
 struct TimerCountRowView: View {
     var timerCount: TimerCount
     @State var countDown: TimeInterval
-
     var deleteAction: () -> ()
 
-    @State var showRemoveButton = false
-
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+
+    @State private var workItemPlay = DispatchWorkItem {}
+    @State private var timerSoundOn = false
+    @State private var showRemoveButton = false
 
     var body: some View {
         HStack {
@@ -34,33 +36,69 @@ struct TimerCountRowView: View {
                             // add 0.5 for delaying count down (don't count down immediately)
                             self.countDown = timerCount.countDownInSeconds() + 0.5
                         } else {
-                            self.countDown = 0
-                            self.timer.upstream.connect().cancel()
+                            guard timerSoundOn == false else {
+                                return
+                            }
+                            timerSoundOn = true
+                            playSound()
+                            timer.upstream.connect().cancel()
+                            countDown = 0
                         }
                     }
+
                 Spacer()
-                Text("\(timerCount.end.timeString())")
+
+                if timerSoundOn == false {
+                    Text("\(timerCount.end.timeString())")
+                } else {
+                    Button("Cancel") {
+                        stopSound()
+                        timerSoundOn = false
+                        self.deleteAction()
+                    }
+                    .buttonStyle(.bordered)
+                    .foregroundColor(.accentColor)
+                }
             }
             .foregroundColor(.white)
             .padding(.vertical, 10)
             .simultaneousGesture(
                 DragGesture()
                     .onEnded { _ in
-                        withAnimation {
-                            showRemoveButton.toggle()
+                        if timerSoundOn == false {
+                            withAnimation {
+                                showRemoveButton.toggle()
+                            }
                         }
                     }
             )
 
             if showRemoveButton {
-                Button(action: self.deleteAction,
-                       label: {
-                           Image(systemName: "xmark.circle.fill")
-                               .renderingMode(.original)
-                               .padding(10)
-                       })
+                Button {
+                    stopSound()
+                    self.deleteAction()
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .renderingMode(.original)
+                        .padding(10)
+                }
             }
         }
+    }
+
+    func playSound() {
+        workItemPlay = DispatchWorkItem {
+            AudioServicesPlaySystemSound(SystemSoundID(1328))
+        }
+        DispatchQueue.global().asyncAfter(deadline: .now() + 0.1, execute: workItemPlay)
+        for i in 1 ... 10 {
+            DispatchQueue.global().asyncAfter(deadline: .now() + (Double(i) * 3.0), execute: workItemPlay)
+        }
+    }
+
+    func stopSound() {
+        workItemPlay.cancel()
+        workItemPlay = DispatchWorkItem {}
     }
 }
 
