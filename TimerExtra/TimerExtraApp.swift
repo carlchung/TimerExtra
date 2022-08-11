@@ -35,10 +35,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
       UNUserNotificationCenter.current().delegate = self
     }
     
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void)
-    {
-        completionHandler([.banner, .sound])
-    }
+//    func userNotificationCenter(_ center: UNUserNotificationCenter,
+//                                willPresent notification: UNNotification,
+//                                withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void)
+//    {
+//        completionHandler([.banner, .sound])
+//    }
 }

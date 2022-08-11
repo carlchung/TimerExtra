@@ -18,6 +18,7 @@ struct TimerCountRowView: View {
     @State private var workItemPlay = DispatchWorkItem {}
     @State private var timerSoundOn = false
     @State private var showRemoveButton = false
+    @State private var soundEffect: AVAudioPlayer?
 
     var body: some View {
         HStack {
@@ -32,10 +33,11 @@ struct TimerCountRowView: View {
                 Text("\(countDown.string(style: .positional))")
                     .font(.title)
                     .onReceive(timer) { _ in
+                        print("countDown \(timerCount.countDownInSeconds())")
                         if timerCount.countDownInSeconds() > 0 {
                             // add 0.5 for delaying count down (don't count down immediately)
                             self.countDown = timerCount.countDownInSeconds() + 0.5
-                        } else {
+                        } else if timerCount.countDownInSeconds() > -5 * 60 {
                             guard timerSoundOn == false else {
                                 return
                             }
@@ -88,15 +90,26 @@ struct TimerCountRowView: View {
 
     func playSound() {
         workItemPlay = DispatchWorkItem {
-            AudioServicesPlaySystemSound(SystemSoundID(1328))
+            AudioServicesPlaySystemSound(SystemSoundID(1011))
         }
         DispatchQueue.global().asyncAfter(deadline: .now() + 0.1, execute: workItemPlay)
         for i in 1 ... 10 {
-            DispatchQueue.global().asyncAfter(deadline: .now() + (Double(i) * 3.0), execute: workItemPlay)
+            DispatchQueue.global().asyncAfter(deadline: .now() + (Double(i) * 1.5), execute: workItemPlay)
+        }
+        // Play a sound without vibration
+        let url = URL(fileURLWithPath: "/System/Library/Audio/UISounds/alarm.caf")
+        do {
+            soundEffect = try AVAudioPlayer(contentsOf: url)
+            soundEffect?.numberOfLoops = -1
+            soundEffect?.volume = 1.0
+            soundEffect?.play()
+        } catch {
+            print("AVAudioPlayer error \(error.localizedDescription)")
         }
     }
 
     func stopSound() {
+        soundEffect?.stop()
         workItemPlay.cancel()
         workItemPlay = DispatchWorkItem {}
     }
