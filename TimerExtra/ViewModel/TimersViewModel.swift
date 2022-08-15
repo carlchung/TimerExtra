@@ -9,6 +9,8 @@ import Foundation
 import UserNotifications
 
 class TimersViewModel: ObservableObject {
+    static let shared = TimersViewModel()
+    
     @Published var timers = [TimerCount]()
 
     func newTimer(seconds: TimeInterval) {
@@ -23,5 +25,10 @@ class TimersViewModel: ObservableObject {
         let identifiers: [String] = [timer.id.uuidString]
         NotificationManager.shared.removeScheduledNotification(identifiers: identifiers)
         timers = timers.filter { $0.start != timer.start }
+    }
+    
+    func removeTimer(uuidString: String) {
+        NotificationManager.shared.removeScheduledNotification(identifiers: [uuidString])
+        timers = timers.filter { $0.id.uuidString != uuidString }
     }
 }

@@ -5,20 +5,19 @@
 //  Created by carl on 03/08/2022.
 //
 
-import AVFoundation
 import SwiftUI
 
 struct TimerCountRowView: View {
+    var alarmSoundPlayer: AlarmSoundPlayer = AlarmSoundPlayer()
+    
     var timerCount: TimerCount
     @State var countDown: TimeInterval
     var deleteAction: () -> ()
 
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
-    @State private var workItemPlay = DispatchWorkItem {}
     @State private var timerSoundOn = false
     @State private var showRemoveButton = false
-    @State private var soundEffect: AVAudioPlayer?
 
     var body: some View {
         HStack {
@@ -37,12 +36,12 @@ struct TimerCountRowView: View {
                         if timerCount.countDownInSeconds() > 0 {
                             // add 0.5 for delaying count down (don't count down immediately)
                             self.countDown = timerCount.countDownInSeconds() + 0.5
-                        } else if timerCount.countDownInSeconds() > -5 * 60 {
+                        } else if timerCount.countDownInSeconds() > -1 {
                             guard timerSoundOn == false else {
                                 return
                             }
                             timerSoundOn = true
-                            playSound()
+                            alarmSoundPlayer.playSound()
                             timer.upstream.connect().cancel()
                             countDown = 0
                         }
@@ -54,7 +53,7 @@ struct TimerCountRowView: View {
                     Text("\(timerCount.end.timeString())")
                 } else {
                     Button("Cancel") {
-                        stopSound()
+                        alarmSoundPlayer.stopSound()
                         timerSoundOn = false
                         self.deleteAction()
                     }
@@ -77,7 +76,7 @@ struct TimerCountRowView: View {
 
             if showRemoveButton {
                 Button {
-                    stopSound()
+                    alarmSoundPlayer.stopSound()
                     self.deleteAction()
                 } label: {
                     Image(systemName: "xmark.circle.fill")
@@ -86,32 +85,6 @@ struct TimerCountRowView: View {
                 }
             }
         }
-    }
-
-    func playSound() {
-        workItemPlay = DispatchWorkItem {
-            AudioServicesPlaySystemSound(SystemSoundID(1011))
-        }
-        DispatchQueue.global().asyncAfter(deadline: .now() + 0.1, execute: workItemPlay)
-        for i in 1 ... 10 {
-            DispatchQueue.global().asyncAfter(deadline: .now() + (Double(i) * 1.5), execute: workItemPlay)
-        }
-        // Play a sound without vibration
-        let url = URL(fileURLWithPath: "/System/Library/Audio/UISounds/alarm.caf")
-        do {
-            soundEffect = try AVAudioPlayer(contentsOf: url)
-            soundEffect?.numberOfLoops = -1
-            soundEffect?.volume = 1.0
-            soundEffect?.play()
-        } catch {
-            print("AVAudioPlayer error \(error.localizedDescription)")
-        }
-    }
-
-    func stopSound() {
-        soundEffect?.stop()
-        workItemPlay.cancel()
-        workItemPlay = DispatchWorkItem {}
     }
 }
 

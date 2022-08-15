@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject var viewModel = TimersViewModel()
+    @StateObject var viewModel = TimersViewModel.shared
     @State var startSeconds: Double = 0
     @State var showMaxTimerAlert = false
     
