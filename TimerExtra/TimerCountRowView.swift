@@ -62,6 +62,7 @@ struct TimerCountRowView: View {
         }
         .onDisappear {
             timer.upstream.connect().cancel()
+            alarmSoundPlayer.stopSound()
         }
     }
 }
