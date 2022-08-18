@@ -20,12 +20,6 @@ class TimersViewModel: ObservableObject {
         let newTimer = TimerCount(id: uuid, start: Date.now, timeInterval: seconds)
         timers.insert(newTimer, at: 0)
     }
-
-    func removeTimer(_ timer: TimerCount) {
-        let identifiers: [String] = [timer.id.uuidString]
-        NotificationManager.shared.removeScheduledNotification(identifiers: identifiers)
-        timers = timers.filter { $0.start != timer.start }
-    }
     
     func removeTimer(uuidString: String) {
         NotificationManager.shared.removeScheduledNotification(identifiers: [uuidString])

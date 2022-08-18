@@ -8,16 +8,13 @@
 import SwiftUI
 
 struct TimerCountRowView: View {
-    var alarmSoundPlayer: AlarmSoundPlayer = AlarmSoundPlayer()
-    
     var timerCount: TimerCount
     @State var countDown: TimeInterval
     var deleteAction: () -> ()
 
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
-
+    let alarmSoundPlayer: AlarmSoundPlayer = AlarmSoundPlayer()
     @State private var timerSoundOn = false
-    @State private var showRemoveButton = false
 
     var body: some View {
         HStack {
@@ -54,7 +51,6 @@ struct TimerCountRowView: View {
                 } else {
                     Button("Cancel") {
                         alarmSoundPlayer.stopSound()
-                        timerSoundOn = false
                         self.deleteAction()
                     }
                     .buttonStyle(.bordered)
@@ -63,27 +59,9 @@ struct TimerCountRowView: View {
             }
             .foregroundColor(.white)
             .padding(.vertical, 10)
-            .simultaneousGesture(
-                DragGesture()
-                    .onEnded { _ in
-                        if timerSoundOn == false {
-                            withAnimation {
-                                showRemoveButton.toggle()
-                            }
-                        }
-                    }
-            )
-
-            if showRemoveButton {
-                Button {
-                    alarmSoundPlayer.stopSound()
-                    self.deleteAction()
-                } label: {
-                    Image(systemName: "xmark.circle.fill")
-                        .renderingMode(.original)
-                        .padding(10)
-                }
-            }
+        }
+        .onDisappear {
+            timer.upstream.connect().cancel()
         }
     }
 }

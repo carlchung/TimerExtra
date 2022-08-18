@@ -14,32 +14,41 @@ struct MainView: View {
     
     var body: some View {
         VStack {
-            ScrollView {
-                if viewModel.timers.count == 0 {
+            if viewModel.timers.count == 0 {
+                Spacer()
+                    
+                HStack {
                     Spacer()
-                    
-                    HStack {
-                        Spacer()
-                        Text("Tap buttons below to add time, then tap Start")
-                            .font(.title2)
-                            .foregroundColor(.white)
-                            .padding(40)
-                        Spacer()
-                    }
-                    .frame(height: 260)
-                    
+                    Text("Tap buttons below to add time, then tap Start")
+                        .font(.title2)
+                        .foregroundColor(.white)
+                        .padding(40)
                     Spacer()
                 }
+                .frame(height: 260)
+                    
+                Spacer()
+            }
+            List {
                 ForEach(viewModel.timers, id: \.id) { timerCount in
                     TimerCountRowView(timerCount: timerCount,
                                       countDown: timerCount.timeInterval,
                                       deleteAction: {
-                                          viewModel.removeTimer(timerCount)
+                                          viewModel.removeTimer(uuidString: timerCount.id.uuidString)
                                       })
                         .padding(.horizontal, 20)
+                        .listRowBackground(Color.black)
+                        .swipeActions {
+                            Button(role: .destructive) {
+                                viewModel.removeTimer(uuidString: timerCount.id.uuidString)
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
+                        }
                 }
             }
             .padding(.top, 10)
+            .listStyle(.plain)
             
             Spacer()
             
@@ -50,14 +59,13 @@ struct MainView: View {
             
             Group {
                 HStack {
-                    if startSeconds < 10 {
-                        AddStartTimeButton(label: "+ 1 second") {
-                            startSeconds += 1
-                        }
-                    } else {
-                        AddStartTimeButton(label: "Reset") {
-                            startSeconds = 0
-                        }
+                    AddStartTimeButton(label: "Reset") {
+                        startSeconds = 0
+                    }
+                    .opacity(startSeconds > 0 ? 1 : 0.3)
+                    
+                    AddStartTimeButton(label: "+ 1 sec") {
+                        startSeconds += 1
                     }
                     
                     AddStartTimeButton(label: "+ 5s") {

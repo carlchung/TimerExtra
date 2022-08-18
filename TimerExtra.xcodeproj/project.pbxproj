@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C397341E28A69E85002BC3F6 /* AlarmSoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C397341D28A69E85002BC3F6 /* AlarmSoundPlayer.swift */; };
+		C397342028AE8281002BC3F6 /* digital-alarm.wav in Resources */ = {isa = PBXBuildFile; fileRef = C397341F28AE827F002BC3F6 /* digital-alarm.wav */; };
 		C39B7DB3289933B000F29BFF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B7DB2289933B000F29BFF /* MainView.swift */; };
 		C39B7DB528993ABA00F29BFF /* AddStartTimeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B7DB428993ABA00F29BFF /* AddStartTimeButton.swift */; };
 		C39B7DB928994A1900F29BFF /* TimersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B7DB828994A1900F29BFF /* TimersViewModel.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		C397341D28A69E85002BC3F6 /* AlarmSoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSoundPlayer.swift; sourceTree = "<group>"; };
+		C397341F28AE827F002BC3F6 /* digital-alarm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "digital-alarm.wav"; sourceTree = "<group>"; };
 		C39B7DB2289933B000F29BFF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		C39B7DB428993ABA00F29BFF /* AddStartTimeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStartTimeButton.swift; sourceTree = "<group>"; };
 		C39B7DB828994A1900F29BFF /* TimersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimersViewModel.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				C39B7DC1289A943600F29BFF /* Model */,
 				C3BB2BE92897F31E00E67B15 /* Assets.xcassets */,
 				C39B7DBA28994B0B00F29BFF /* Info.plist */,
+				C397341F28AE827F002BC3F6 /* digital-alarm.wav */,
 				C39B7DB628993C6200F29BFF /* Uilities */,
 				C3BB2BEB2897F31E00E67B15 /* Preview Content */,
 			);
@@ -282,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3BB2BED2897F31E00E67B15 /* Preview Assets.xcassets in Resources */,
+				C397342028AE8281002BC3F6 /* digital-alarm.wav in Resources */,
 				C3BB2BEA2897F31E00E67B15 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

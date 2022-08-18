@@ -4,6 +4,7 @@
 //
 //  Created by carl on 02/08/2022.
 //
+// alarm sound file from https://mixkit.co/free-sound-effects/
 
 import Foundation
 import UserNotifications
@@ -37,12 +38,7 @@ class NotificationManager: ObservableObject {
         
         content.categoryIdentifier = categoryIdentifier
         content.userInfo = ["uuidString": "\(uuid.uuidString)"]
-        if #available(iOS 15.2, *) {
-            content.sound = .defaultRingtone
-        } else {
-            // Fallback on earlier versions
-            content.sound = .default
-        }
+        content.sound = UNNotificationSound.init(named: UNNotificationSoundName(rawValue: "digital-alarm.wav"))
         content.interruptionLevel = .critical
 
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
