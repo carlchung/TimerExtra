@@ -49,6 +49,7 @@ struct MainView: View {
             }
             .padding(.top, 10)
             .listStyle(.plain)
+            .accessibilityIdentifier("timersList")
             
             Spacer()
             
