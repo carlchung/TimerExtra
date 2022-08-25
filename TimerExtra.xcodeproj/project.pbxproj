@@ -23,6 +23,7 @@
 		C3BB2BF72897F31F00E67B15 /* TimerExtraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB2BF62897F31F00E67B15 /* TimerExtraTests.swift */; };
 		C3BB2C012897F31F00E67B15 /* TimerExtraUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB2C002897F31F00E67B15 /* TimerExtraUITests.swift */; };
 		C3BB2C032897F31F00E67B15 /* TimerExtraUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB2C022897F31F00E67B15 /* TimerExtraUITestsLaunchTests.swift */; };
+		C3E11D6528B7845C00796CCA /* MainWindowSizeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E11D6428B7845C00796CCA /* MainWindowSizeKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		C3BB2BFC2897F31F00E67B15 /* TimerExtraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimerExtraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3BB2C002897F31F00E67B15 /* TimerExtraUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerExtraUITests.swift; sourceTree = "<group>"; };
 		C3BB2C022897F31F00E67B15 /* TimerExtraUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerExtraUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C3E11D6428B7845C00796CCA /* MainWindowSizeKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowSizeKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 			children = (
 				C39B7DBB28995E6500F29BFF /* TimeInterval+String.swift */,
 				C39B7DC4289ACB2A00F29BFF /* Date+TimeString.swift */,
+				C3E11D6428B7845C00796CCA /* MainWindowSizeKey.swift */,
 			);
 			path = Uilities;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				C39B7DBC28995E6600F29BFF /* TimeInterval+String.swift in Sources */,
 				C39B7DB928994A1900F29BFF /* TimersViewModel.swift in Sources */,
 				C39B7DB528993ABA00F29BFF /* AddStartTimeButton.swift in Sources */,
+				C3E11D6528B7845C00796CCA /* MainWindowSizeKey.swift in Sources */,
 				C39B7DBE2899A0CB00F29BFF /* NotificationManager.swift in Sources */,
 				C39B7DC3289A95D600F29BFF /* TimerCount.swift in Sources */,
 				C39B7DB3289933B000F29BFF /* MainView.swift in Sources */,
@@ -478,7 +482,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development: Carl Chung (9RE9826PD6)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"TimerExtra/Preview Content\"";
 				DEVELOPMENT_TEAM = RD3CFK5ED5;
 				ENABLE_PREVIEWS = YES;
@@ -495,7 +499,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.carlchung.timerextra;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "TimerExtra iOS Development Provisioning Profile";
@@ -512,7 +516,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"TimerExtra/Preview Content\"";
 				DEVELOPMENT_TEAM = RD3CFK5ED5;
 				ENABLE_PREVIEWS = YES;
@@ -529,7 +533,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.carlchung.timerextra;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Timer Extra iOS Distribution Provisioning Profile";

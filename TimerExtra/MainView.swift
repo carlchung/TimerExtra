@@ -33,10 +33,10 @@ struct MainView: View {
                 ForEach(viewModel.timers, id: \.id) { timerCount in
                     TimerCountRowView(timerCount: timerCount,
                                       countDown: timerCount.timeInterval,
+                                      canMaximise: viewModel.timers.count == 1,
                                       deleteAction: {
                                           viewModel.removeTimer(uuidString: timerCount.id.uuidString)
                                       })
-                        .padding(.horizontal, 20)
                         .listRowBackground(Color.black)
                         .swipeActions {
                             Button(role: .destructive) {

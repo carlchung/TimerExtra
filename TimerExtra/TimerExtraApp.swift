@@ -12,8 +12,11 @@ struct TimerExtraApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
         WindowGroup {
-            MainView()
-                .background(Color.black)
+            GeometryReader { proxy in
+                MainView()
+                    .background(Color.black)
+                    .environment(\.mainWindowSize, proxy.size)
+            }
         }
     }
 }
@@ -51,7 +54,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                     // the user tapped our "Stop and cancel" button
                     print("Stop and cancel timer")
                     TimersViewModel.shared.removeTimer(uuidString: uuidString)
-                
+
                 default:
                     break
             }
