@@ -143,7 +143,7 @@ class TimerExtraUITests: XCTestCase {
         XCTAssertTrue(message.waitForExistence(timeout: 0.1))
         
         let message2 = app.staticTexts["00:00"]
-        XCTAssertTrue(message2.waitForExistence(timeout: (60 * 10) - 0.01))
+        XCTAssertTrue(message2.waitForExistence(timeout: 60 * 10))
     }
     
     func testTimer30mins() {
