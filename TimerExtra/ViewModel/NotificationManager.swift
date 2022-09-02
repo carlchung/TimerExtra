@@ -9,26 +9,22 @@
 import Foundation
 import UserNotifications
 
-class NotificationManager: ObservableObject {
-    static let shared = NotificationManager()
-    @Published var settings: UNNotificationSettings?
+struct NotificationManager {
     
     let categoryIdentifier = "timer"
     let stopActionIdentifier = "stop"
 
-    func requestAuthorization(completion: @escaping (Bool) -> Void) {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
-            self.fetchNotificationSettings()
-            completion(granted)
+    func requestAuthorization() async -> Bool  {
+        do {
+            return try await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge])
+        } catch {
+            print("UNUserNotificationCenter requestAuthorization error")
+            return false
         }
     }
 
-    func fetchNotificationSettings() {
-        UNUserNotificationCenter.current().getNotificationSettings { settings in
-            DispatchQueue.main.async {
-                self.settings = settings
-            }
-        }
+    func fetchNotificationSettings() async -> UNNotificationSettings {
+        return await UNUserNotificationCenter.current().notificationSettings()
     }
 
     func scheduleNotification(timeInterval: TimeInterval, uuid: UUID) {

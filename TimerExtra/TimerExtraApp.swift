@@ -50,7 +50,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                     print("Default Action Identifier")
                     TimersViewModel.shared.removeTimer(uuidString: uuidString)
 
-                case NotificationManager.shared.stopActionIdentifier:
+                case NotificationManager().stopActionIdentifier:
                     // the user tapped our "Stop and cancel" button
                     print("Stop and cancel timer")
                     TimersViewModel.shared.removeTimer(uuidString: uuidString)

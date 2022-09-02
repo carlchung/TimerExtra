@@ -12,6 +12,8 @@ struct MainView: View {
     @State var startSeconds: Double = 0
     @State var showMaxTimerAlert = false
     
+    let notificationManager = NotificationManager()
+    
     var body: some View {
         VStack {
             if viewModel.timers.count == 0 {
@@ -116,18 +118,30 @@ struct MainView: View {
                         startSeconds = 24 * 60 * 60
                     }
                     showMaxTimerAlert = false
-                    NotificationManager.shared.fetchNotificationSettings()
-                    let notifSettings = NotificationManager.shared.settings
-                    if notifSettings?.authorizationStatus == .authorized {
-                        startNewTimer()
-                    } else {
-                        NotificationManager.shared.requestAuthorization { granted in
-                            print("requestAuthorization granted \(granted)")
+                    Task {
+                        let notifSettings = await notificationManager.fetchNotificationSettings()
+                        print("authorizationStatus \(notifSettings.authorizationStatus == .authorized )")
+                        if notifSettings.authorizationStatus == .authorized {
+                            startNewTimer()
+                        } else {
+                            if await notificationManager.requestAuthorization() {
                             DispatchQueue.main.async {
                                 startNewTimer()
                             }
+                            }
                         }
                     }
+                    
+//                    notificationManager.fetchNotificationSettings { notifSettings in
+//                        if notifSettings.authorizationStatus == .authorized {
+//                            startNewTimer()
+//                        } else {
+//                            notificationManager.requestAuthorization { granted in
+//                                print("requestAuthorization granted \(granted)")
+//
+//                            }
+//                        }
+                    
                 } label: {
                     Spacer()
                     Text(startSeconds > 0 ? "\(TimeInterval(startSeconds).string(style: .positional))    Start" : "Start")

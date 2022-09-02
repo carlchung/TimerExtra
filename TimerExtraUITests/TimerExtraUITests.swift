@@ -161,7 +161,6 @@ class TimerExtraUITests: XCTestCase {
     }
     
     func testTimerRemove() {
-        
         // test with 2 timers , 5s and 10 mins
         let fiveSecondButton = app.buttons["+ 5s"]
         let startButton = app.buttons["00:05    Start"]
@@ -189,13 +188,4 @@ class TimerExtraUITests: XCTestCase {
         let message2 = app.staticTexts["00:00"]
         XCTAssertTrue(message2.waitForExistence(timeout: 3))
     }
-    
-//    func testLaunchPerformance() throws {
-//        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-//            // This measures how long it takes to launch your application.
-//            measure(metrics: [XCTApplicationLaunchMetric()]) {
-//                XCUIApplication().launch()
-//            }
-//        }
-//    }
 }
