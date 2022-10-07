@@ -173,10 +173,9 @@ class TimerExtraUITests: XCTestCase {
         startButton2.tap()
         
         // find the first cell, swipe and tap delete (delete 10 mins timer)
-        let cells = app.tables.cells.firstMatch
-        XCTAssertTrue(cells.waitForExistence(timeout: 0.1))
         
-        cells.swipeLeft()
+        let firstCell = app.cells.firstMatch
+        firstCell.swipeLeft()
         
         let deleteButton = app.buttons["Delete"]
         XCTAssertTrue(deleteButton.waitForExistence(timeout: 0.1))

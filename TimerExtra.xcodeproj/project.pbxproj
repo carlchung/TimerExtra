@@ -17,6 +17,7 @@
 		C39B7DC3289A95D600F29BFF /* TimerCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B7DC2289A95D600F29BFF /* TimerCount.swift */; };
 		C39B7DC5289ACB2A00F29BFF /* Date+TimeString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B7DC4289ACB2A00F29BFF /* Date+TimeString.swift */; };
 		C39B7DC7289AE3C700F29BFF /* TimerCountRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39B7DC6289AE3C600F29BFF /* TimerCountRowView.swift */; };
+		C39BE59428CFA08200EB92F6 /* Color+AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39BE59328CFA08200EB92F6 /* Color+AppColor.swift */; };
 		C3BB2BE62897F31900E67B15 /* TimerExtraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BB2BE52897F31900E67B15 /* TimerExtraApp.swift */; };
 		C3BB2BEA2897F31E00E67B15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3BB2BE92897F31E00E67B15 /* Assets.xcassets */; };
 		C3BB2BED2897F31E00E67B15 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3BB2BEC2897F31E00E67B15 /* Preview Assets.xcassets */; };
@@ -55,6 +56,7 @@
 		C39B7DC2289A95D600F29BFF /* TimerCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCount.swift; sourceTree = "<group>"; };
 		C39B7DC4289ACB2A00F29BFF /* Date+TimeString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+TimeString.swift"; sourceTree = "<group>"; };
 		C39B7DC6289AE3C600F29BFF /* TimerCountRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCountRowView.swift; sourceTree = "<group>"; };
+		C39BE59328CFA08200EB92F6 /* Color+AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+AppColor.swift"; sourceTree = "<group>"; };
 		C3BB2BE22897F31900E67B15 /* TimerExtra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimerExtra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3BB2BE52897F31900E67B15 /* TimerExtraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerExtraApp.swift; sourceTree = "<group>"; };
 		C3BB2BE92897F31E00E67B15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				C39B7DBB28995E6500F29BFF /* TimeInterval+String.swift */,
 				C39B7DC4289ACB2A00F29BFF /* Date+TimeString.swift */,
 				C3E11D6428B7845C00796CCA /* MainWindowSizeKey.swift */,
+				C39BE59328CFA08200EB92F6 /* Color+AppColor.swift */,
 			);
 			path = Uilities;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				C39B7DBE2899A0CB00F29BFF /* NotificationManager.swift in Sources */,
 				C39B7DC3289A95D600F29BFF /* TimerCount.swift in Sources */,
 				C39B7DB3289933B000F29BFF /* MainView.swift in Sources */,
+				C39BE59428CFA08200EB92F6 /* Color+AppColor.swift in Sources */,
 				C3BB2BE62897F31900E67B15 /* TimerExtraApp.swift in Sources */,
 				C397341E28A69E85002BC3F6 /* AlarmSoundPlayer.swift in Sources */,
 			);
@@ -482,7 +486,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development: Carl Chung (9RE9826PD6)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"TimerExtra/Preview Content\"";
 				DEVELOPMENT_TEAM = RD3CFK5ED5;
 				ENABLE_PREVIEWS = YES;
@@ -491,10 +495,10 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -516,7 +520,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"TimerExtra/Preview Content\"";
 				DEVELOPMENT_TEAM = RD3CFK5ED5;
 				ENABLE_PREVIEWS = YES;
@@ -525,10 +529,10 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

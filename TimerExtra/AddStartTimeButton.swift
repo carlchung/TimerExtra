@@ -21,7 +21,7 @@ struct AddStartTimeButton: View {
             Spacer()
         }
         .buttonStyle(.borderedProminent)
-        .tint(.secondary)
+        .tint(.appDarkGray)
     }
 }
 

@@ -35,11 +35,11 @@ struct MainView: View {
                 ForEach(viewModel.timers, id: \.id) { timerCount in
                     TimerCountRowView(timerCount: timerCount,
                                       countDown: timerCount.timeInterval,
-                                      canMaximise: viewModel.timers.count == 1,
                                       deleteAction: {
                                           viewModel.removeTimer(uuidString: timerCount.id.uuidString)
                                       })
                         .listRowBackground(Color.black)
+                        .listRowSeparator(.hidden)
                         .swipeActions {
                             Button(role: .destructive) {
                                 viewModel.removeTimer(uuidString: timerCount.id.uuidString)
@@ -131,17 +131,6 @@ struct MainView: View {
                             }
                         }
                     }
-                    
-//                    notificationManager.fetchNotificationSettings { notifSettings in
-//                        if notifSettings.authorizationStatus == .authorized {
-//                            startNewTimer()
-//                        } else {
-//                            notificationManager.requestAuthorization { granted in
-//                                print("requestAuthorization granted \(granted)")
-//
-//                            }
-//                        }
-                    
                 } label: {
                     Spacer()
                     Text(startSeconds > 0 ? "\(TimeInterval(startSeconds).string(style: .positional))    Start" : "Start")
@@ -151,7 +140,7 @@ struct MainView: View {
                     Spacer()
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.secondary)
+                .tint(.appDarkGray)
                 .opacity(startSeconds > 0 && viewModel.timers.count < 3 ? 1.0 : 0.3)
                 .padding(.vertical, 15)
             }
